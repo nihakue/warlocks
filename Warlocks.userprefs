@@ -1,0 +1,17 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Spells\Fireblast.cs">
+    <Files>
+      <File FileName="Assets\Scripts\GUI\drawGUI.cs" Line="34" Column="2" />
+      <File FileName="Assets\Scripts\Movement\CharacterControls.cs" Line="84" Column="3" />
+      <File FileName="Assets\Scripts\Player\Variables.cs" Line="4" Column="41" />
+      <File FileName="Assets\Scripts\Player\SpellSelector.cs" Line="33" Column="24" />
+      <File FileName="Assets\Scripts\Spells\Fireball.cs" Line="17" Column="17" />
+      <File FileName="Assets\Scripts\Spells\Fireblast.cs" Line="38" Column="6" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
