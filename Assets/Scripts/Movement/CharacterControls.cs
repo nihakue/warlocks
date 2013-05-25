@@ -37,7 +37,8 @@ public class CharacterControls : MonoBehaviour {
 	void Update () {
 		
 		if (Input.GetButtonDown("Fire1"))
-			FireSpell();
+			if (GUIUtility.hotControl == 0)
+				spellSelector.CastSpell(lockStatus.currentSpell);
 		if (Input.GetKey(KeyCode.D))
 			rigidbody.AddForce(new Vector3(lockSpeed, 0, 0));
 		if (Input.GetKey(KeyCode.A))
@@ -54,9 +55,6 @@ public class CharacterControls : MonoBehaviour {
 				tempTran.LookAt(rayHit.point);
 				transform.rotation = Quaternion.Euler(0, tempTran.rotation.eulerAngles.y, 0);
 			}
-		
-		
-
 	
 	}
 	
@@ -73,14 +71,5 @@ public class CharacterControls : MonoBehaviour {
 			rb.velocity = lockVelocity.normalized * lockSpeed;
 	}
 	
-	void FireSpell(){
-		if (GUIUtility.hotControl == 0)
-		{
-			if (lockStatus.currentSpell == (int)SPELLS.Fireball)
-				spellSelector.CastSpell(SPELLS.Fireball);
-			else if (lockStatus.currentSpell == (int)SPELLS.Fireblast)
-				spellSelector.CastSpell(SPELLS.Fireblast);
-		}
-	}
 		
 }	

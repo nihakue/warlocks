@@ -11,11 +11,16 @@ public class drawGUI : MonoBehaviour {
 	public Texture unclickedFireblast;
 	public Texture clickedFireblast;
 	
+	public Texture2D projectileCursor;
+	
 	private Rect buttonSize;
 	private Rect button2Size;
 	
 	private GUIStyle fireballStyle;
 	private Variables playerVariables;
+	
+	//Status text centered on cursor
+	private string cursorStatusText;
 	
 
 	// Use this for initialization
@@ -26,6 +31,8 @@ public class drawGUI : MonoBehaviour {
 		
 		fireballTex = unclickedFireball;
 		fireblastTex = unclickedFireblast;
+		
+		cursorStatusText = "";
 	}
 	// Update is called once per frame
 	void Update () {
@@ -37,15 +44,48 @@ public class drawGUI : MonoBehaviour {
 		if (GUI.Button(buttonSize, fireballTex))
 		{
 			fireballTex = clickedFireball;
-			fireblastTex = unclickedFireblast;
+			ClearButtons(fireballTex);
 			playerVariables.currentSpell = (int)SPELLS.Fireball;
+			SetProjectileCursor();
 		}
 		
 		if (GUI.Button(button2Size, fireblastTex))
 		{
 			fireblastTex = clickedFireblast;
-			fireballTex = unclickedFireball;
+			ClearButtons(fireblastTex);
 			playerVariables.currentSpell = (int)SPELLS.Fireblast;
+			SetProjectileCursor();
 		}
+		
+		GUI.Label(new Rect(Screen.width/2, Screen.height/1.1f, 500, 50), cursorStatusText);
 	}
+	
+	public void SetProjectileCursor(){
+		
+		Cursor.SetCursor(projectileCursor, Vector2.zero, CursorMode.ForceSoftware);
+	}
+	
+	public void SetHardwareCursor(){
+		Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+	}
+	
+	//Clears the active spell button graphics
+	//Parameters: Optional Texture will not clear
+	public void ClearButtons(Texture dontClear = null){
+		if (!dontClear == fireballTex)
+			fireballTex = unclickedFireball;
+		if (!dontClear == fireblastTex)
+			fireblastTex = unclickedFireblast;
+	}
+	
+	public void SetCursorStatus(string status){
+		cursorStatusText = status;
+		StartCoroutine(statusTextFade());
+	}
+	
+	IEnumerator statusTextFade(){
+		yield return new WaitForSeconds(2);
+		cursorStatusText = "";
+	}
+
 }

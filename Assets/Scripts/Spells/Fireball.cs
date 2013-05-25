@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Fireball: MonoBehaviour {
 	
+	public GameObject warlock;
 	public GameObject spell;
 	public float shootSpeed;
 	public float range;
@@ -18,12 +19,15 @@ public class Fireball: MonoBehaviour {
 		onCooldown = false;
 	}
 	
+	void Awake() {
+	}
+	
 	// Update is called once per frame
 	void Update () {
 
 	}
 	
-	public void Cast(){
+	public bool Cast(){
 		if (!onCooldown)
 		{
 			ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -32,18 +36,22 @@ public class Fireball: MonoBehaviour {
 				GameObject spellInstance;
 					
 				//Set the rotation for the instantiated projectile based on mouse click
-				Transform tempTran = transform;
+				Transform tempTran = warlock.transform;
 				tempTran.LookAt(rayHit.point);
-				transform.rotation = Quaternion.Euler(0, tempTran.rotation.eulerAngles.y, 0);
+				warlock.transform.rotation = Quaternion.Euler(0, tempTran.rotation.eulerAngles.y, 0);
 					
 				//Instantitate an instance of the spell at the "wand" (shotOrigin) of the wizarrd object
-				Vector3 startPosition = transform.FindChild("Body").FindChild("ShotOrigin").transform.position;
-				spellInstance = Instantiate(spell, startPosition, transform.rotation) as GameObject;
+				Vector3 startPosition = warlock.transform.FindChild("Body").FindChild("ShotOrigin").transform.position;
+				spellInstance = Instantiate(spell, startPosition, warlock.transform.rotation) as GameObject;
 				Vector3 endPosition = spellInstance.transform.TransformPoint(Vector3.forward * range);
 				StartCoroutine(FireProjectile(spellInstance, startPosition, endPosition));
 				StartCoroutine(TriggerCooldown());
 			}
+			return true;
 		}
+		else
+			return false;
+		
 	}
 
 	

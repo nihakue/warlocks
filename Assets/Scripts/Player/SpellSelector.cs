@@ -6,18 +6,22 @@ public class SpellSelector : MonoBehaviour {
 	
 	private string activeSpell;
 	private GameObject playerData;
-	public GameObject warlock;
-	private Variables playerVariables;
+	public Transform warlock;
+	private Variables lockStatus;
 	
 	private Fireball fireball;
 	private Fireblast fireblast;
+	private Transform lockSpells;
+	private drawGUI gui;
 	
 	// Use this for initialization
 	void Start () {
 		playerData = GameObject.Find("PlayerData");
-		playerVariables = playerData.GetComponent<Variables>();
-		fireball = warlock.GetComponent<Fireball>();
-		fireblast = warlock.GetComponent<Fireblast>();
+		lockSpells = warlock.transform.FindChild("Spells");
+		lockStatus = playerData.GetComponent<Variables>();
+		fireball = lockSpells.GetComponent<Fireball>();
+		fireblast = lockSpells.GetComponent<Fireblast>();
+		gui = GameObject.FindGameObjectWithTag("GUI").GetComponent<drawGUI>();
 		
 	}
 	
@@ -26,17 +30,35 @@ public class SpellSelector : MonoBehaviour {
 	
 	}
 	
-	public void CastSpell(SPELLS chosenSpell){
+	public void CastSpell(int chosenSpell){
 	
 		switch(chosenSpell)
 		{
-		case SPELLS.Fireball:
-			fireball.Cast();
+		case (int)SPELLS.Movement:
+			Debug.Log("Movement");
 			break;
-		case SPELLS.Fireblast:
-			fireblast.Cast();
+		case (int)SPELLS.Fireball:
+			if(fireball.Cast())
+			{
+				lockStatus.currentSpell = (int)SPELLS.Movement;
+				gui.SetHardwareCursor();
+				gui.ClearButtons();
+			}
+			else
+				gui.SetCursorStatus("On Cooldown!");
+			break;
+		case (int)SPELLS.Fireblast:
+			if(fireblast.Cast())
+			{
+				lockStatus.currentSpell = (int)SPELLS.Movement;
+				gui.SetHardwareCursor();
+				gui.ClearButtons();
+			}
+			else
+				gui.SetCursorStatus("On Cooldown!");
 			break;
 		}
 		
 	}
+	
 }

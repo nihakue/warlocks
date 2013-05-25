@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public enum SPELLS{Fireball, Fireblast};
+public enum SPELLS{Movement, Fireball, Fireblast};
 
 
 public class Variables : MonoBehaviour {
