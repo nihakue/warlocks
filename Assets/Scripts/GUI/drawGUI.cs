@@ -15,9 +15,10 @@ public class drawGUI : MonoBehaviour {
 	
 	private Rect buttonSize;
 	private Rect button2Size;
+	private Rect button3Size;
 	
 	private GUIStyle fireballStyle;
-	private Variables playerVariables;
+	private Variables lockStatus;
 	
 	//Status text centered on cursor
 	private string cursorStatusText;
@@ -27,7 +28,8 @@ public class drawGUI : MonoBehaviour {
 	void Start () {
 		buttonSize = new Rect(10, 10, 100, 30);
 		button2Size = new Rect(10, 50, 100, 30);
-		playerVariables = GameObject.Find("PlayerData").GetComponent<Variables>();
+		button3Size = new Rect(10, 90, 100, 30);
+		lockStatus = GameObject.Find("PlayerData").GetComponent<Variables>();
 		
 		fireballTex = unclickedFireball;
 		fireblastTex = unclickedFireblast;
@@ -45,7 +47,7 @@ public class drawGUI : MonoBehaviour {
 		{
 			fireballTex = clickedFireball;
 			ClearButtons(fireballTex);
-			playerVariables.currentSpell = (int)SPELLS.Fireball;
+			lockStatus.currentSpell = (int)SPELLS.Fireball;
 			SetProjectileCursor();
 		}
 		
@@ -53,11 +55,21 @@ public class drawGUI : MonoBehaviour {
 		{
 			fireblastTex = clickedFireblast;
 			ClearButtons(fireblastTex);
-			playerVariables.currentSpell = (int)SPELLS.Fireblast;
+			lockStatus.currentSpell = (int)SPELLS.Fireblast;
 			SetProjectileCursor();
 		}
 		
+		if (GUI.Button(button3Size, "Teleport"))
+		{
+			ClearButtons(fireblastTex);
+			lockStatus.currentSpell = (int)SPELLS.Teleport;
+			SetProjectileCursor();
+		}
+		
+		//Displays whether or not there is a cooldown for a spell. Until better system in place.
 		GUI.Label(new Rect(Screen.width/2, Screen.height/1.1f, 500, 50), cursorStatusText);
+		
+		GUI.Label(new Rect(Screen.width/2, Screen.height/1.2f, 500, 50), lockStatus.currentHealth + " / " + lockStatus.maxhealth);
 	}
 	
 	public void SetProjectileCursor(){

@@ -66,7 +66,7 @@ public class Fireball: MonoBehaviour {
 				
 		while (percentDistance < 1)
 		{
-			percentDistance = percentDistance + Time.deltaTime * speed;
+			percentDistance = percentDistance + speed * Time.deltaTime;
 			if (percentDistance > 1)
 				percentDistance = 1;
 			projectile.transform.position = Vector3.Lerp(startPosition, endPosition, percentDistance);

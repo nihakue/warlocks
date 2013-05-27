@@ -1,12 +1,13 @@
 using UnityEngine;
 using System.Collections;
 
-public enum SPELLS{Movement, Fireball, Fireblast};
+public enum SPELLS{Movement, Fireball, Fireblast, Teleport};
 
 
 public class Variables : MonoBehaviour {
 	
-	public int health;
+	public int maxhealth;
+	public int currentHealth;
 	public int fireResistance;
 	public int knockbackResistance;
 	public int speed;
@@ -15,9 +16,8 @@ public class Variables : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		health = 100;
-		speed = 3;
-		fireResistance = 1;
+		maxhealth = 100;
+		currentHealth = maxhealth;
 		knockbackResistance = 1;
 	}
 	
