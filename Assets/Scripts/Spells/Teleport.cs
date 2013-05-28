@@ -39,8 +39,10 @@ public class Teleport : MonoBehaviour {
 				onCooldown = true;
 				Vector3 toPosition = new Vector3 (rayHit.point.x, warlock.transform.position.y+.2f, rayHit.point.z);
 				Vector3 difference = toPosition - warlock.transform.position;
-				difference = difference.normalized * range;
-				toPosition = warlock.transform.position + difference;
+				if (difference.magnitude >range){
+					difference = difference.normalized * range;
+					toPosition = warlock.transform.position + difference;
+				}
 					
 				//Set the new position for the warlock based on 
 				warlock.rigidbody.MovePosition(toPosition);
