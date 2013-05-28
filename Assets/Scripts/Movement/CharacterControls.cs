@@ -43,13 +43,12 @@ public class CharacterControls : MonoBehaviour {
 			transform.rotation = Quaternion.Euler(0, tempTran.rotation.eulerAngles.y, 0);
 		}
 		
+		if (Input.GetButtonDown("Movement")){
+			SetMoveTowards(Input.mousePosition);
+		}
+		
 		if (Input.GetButtonDown("Fire1")){
 			if (GUIUtility.hotControl == 0){
-				if (lockStatus.currentSpell == (int)SPELLS.Movement)
-				{
-					SetMoveTowards(Input.mousePosition);
-				}
-				else
 					spellSelector.CastSpell(lockStatus.currentSpell);
 			}
 		}
