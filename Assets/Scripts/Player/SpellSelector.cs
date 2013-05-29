@@ -15,6 +15,7 @@ public class SpellSelector : MonoBehaviour {
 	private Fireball fireball;
 	private Fireblast fireblast;
 	private Teleport teleport;
+	private Windblast windblast;
 	private Transform lockSpells;
 	private drawGUI gui;
 	
@@ -26,6 +27,7 @@ public class SpellSelector : MonoBehaviour {
 		fireball = lockSpells.GetComponent<Fireball>();
 		fireblast = lockSpells.GetComponent<Fireblast>();
 		teleport = lockSpells.GetComponent<Teleport>();
+		windblast = lockSpells.GetComponent<Windblast>();
 		gui = GameObject.FindGameObjectWithTag("GUI").GetComponent<drawGUI>();
 		
 		smartCast = false;
@@ -72,6 +74,17 @@ public class SpellSelector : MonoBehaviour {
 			
 		case (int)SPELLS.Teleport:
 			if (teleport.Cast())
+			{
+				ClearStatus();
+			}
+			else {
+				gui.SetCursorStatus("On Cooldown!");
+				ClearStatus();
+			}
+			break;
+			
+		case (int)SPELLS.Windblast:
+			if (windblast.Cast())
 			{
 				ClearStatus();
 			}

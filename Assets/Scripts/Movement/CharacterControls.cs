@@ -154,6 +154,10 @@ public class CharacterControls : MonoBehaviour {
 	}
 	
 	void CastSpell4(){
+		lockStatus.currentSpell = (int)SPELLS.Windblast;
+		gui.SetProjectileCursor();
+		if (Input.GetKey(KeyCode.LeftAlt))
+			spellSelector.smartCast = true;
 	}
 	
 	void CastSpell5(){

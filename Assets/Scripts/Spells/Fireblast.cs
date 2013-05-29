@@ -60,7 +60,7 @@ public class Fireblast: MonoBehaviour {
 		onCooldown = true;
 		
 				
-		while (percentDistance < 1)
+		while (projectile && percentDistance < 1)
 		{
 			percentDistance = percentDistance + Time.deltaTime * speed;
 			if (percentDistance > 1)
