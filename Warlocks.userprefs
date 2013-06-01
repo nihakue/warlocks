@@ -1,16 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Spells\SpellInteractions.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Movement/CharacterControls.cs">
     <Files>
-      <File FileName="Assets\Scripts\Spells\SpellInteractions.cs" Line="12" Column="45" />
-      <File FileName="Assets\Scripts\Spells\Teleport.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Spells\Windblast.cs" Line="55" Column="2" />
-      <File FileName="Assets\Scripts\Spells\Fireblast.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Player\SpellSelector.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Player\Variables.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Environment\LavaDamage.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Spells\Fireball.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Spells\Spell Prefab Scripts\WindblastPrefab.cs" Line="34" Column="11" />
+      <File FileName="Assets/Scripts/Movement/CharacterControls.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
