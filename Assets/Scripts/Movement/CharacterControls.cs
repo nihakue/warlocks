@@ -96,13 +96,19 @@ public class CharacterControls : MonoBehaviour {
 			{
 				float xAxisValue = Input.GetAxis("HorizontalLook");
 				float yAxisValue = Input.GetAxis("VerticalLook");
-				float radian = Mathf.Asin(xAxisValue);
+				/*float radian = Mathf.Asin(xAxisValue);
 				float degrees = radian * Mathf.Rad2Deg;
 				if (yAxisValue > 0)
 					degrees = 360 - degrees;
 				
 				Debug.Log(degrees);
-				Quaternion direction = Quaternion.Euler(0, degrees, 0);
+				
+				*/				
+				float degrees = Mathf.Atan2( -yAxisValue , xAxisValue) * Mathf.Rad2Deg;
+				
+				Debug.Log( degrees) ;
+				
+				Quaternion direction = Quaternion.Euler(0, -degrees, 0);
 				transform.rotation = direction;
 				
 			}
